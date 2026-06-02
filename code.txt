@@ -1,0 +1,36 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+import time
+
+def git_login(username, password, submit_button_xpath):
+    driver = webdriver.Chrome()
+    time.sleep(2)
+    driver.maximize_window()
+
+    url = 'https://github.com/login' #url login
+    driver.get(url)
+    time.sleep(2)
+    
+    username_field = driver.find_element(By.ID, 'login_field')     # username
+    username_field.send_keys(username)
+    time.sleep(2)
+    
+    password_field = driver.find_element(By.ID, 'password')      # password
+    password_field.send_keys(password)          
+    time.sleep(2)
+    
+    submit_button = driver.find_element(By.XPATH, submit_button_xpath)     # signin button 
+    submit_button.click()
+    time.sleep(2)
+
+    driver.quit()     # quit button
+    time.sleep(2)
+
+username = 'rakesh' # put your login id
+password = 'rakesh@123' # put your password
+
+submit_button_xpath = '/html/body/div[1]/div[4]/main/div/div[2]/form/div[3]/input' 
+# Right click on Sign in button, go to inspect and find the "XPath" of the Sign in, then copy and paste it above 
+
+git_login(username, password, submit_button_xpath) # ------>>> Just run the code
